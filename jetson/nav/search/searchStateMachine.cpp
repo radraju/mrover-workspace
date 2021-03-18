@@ -148,6 +148,7 @@ NavState SearchStateMachine::executeSearchTurn( Rover* phoebe, const rapidjson::
 {
     if( mSearchPoints.empty() )
     {
+        cerr << "ChangeSearchAlg, mSearchPoints is empty\n";
         return NavState::ChangeSearchAlg;
     }
     if( phoebe->roverStatus().target().distance >= 0 )
@@ -157,6 +158,7 @@ NavState SearchStateMachine::executeSearchTurn( Rover* phoebe, const rapidjson::
         return NavState::TurnToTarget;
     }
     Odometry& nextSearchPoint = mSearchPoints.front();
+    cerr << "Next search point retrieved\n";
     if( phoebe->turn( nextSearchPoint ) )
     {
         return NavState::SearchDrive;
