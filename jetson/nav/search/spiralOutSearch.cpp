@@ -12,7 +12,7 @@ SpiralOut::~SpiralOut() {}
 void SpiralOut::initializeSearch( Rover* rover, const rapidjson::Document& roverConfig, const double visionDistance )
 {
     mSearchPoints.clear();
-    cerr << "Search points cleared\n";
+    cerr << "Search points cleared in initializeSearch\n";
     mSearchPointMultipliers.clear();
     cerr << "Search point multipliers cleared\n";
     mSearchPointMultipliers.push_back( pair<short, short> (  0,  1 ) );

@@ -161,9 +161,11 @@ NavState SearchStateMachine::executeSearchTurn()
         return NavState::TurnToTarget;
     }
     Odometry& nextSearchPoint = mSearchPoints.front();
-    cerr << "Next search point retrieved\n";
-    if( phoebe->turn( nextSearchPoint ) )
+    
+    if( mRover->turn( nextSearchPoint ) )
     {
+        cerr << "Next search point retrieved\n";  // when turning auton off bug, outputs this right away
+        cerr << "Num of searchPoints: " << int( mSearchPoints.size() ) << endl;
         return NavState::SearchDrive;
     }
     return NavState::SearchTurn;
@@ -263,6 +265,7 @@ NavState SearchStateMachine::executeDriveToTarget()
     if( driveStatus == DriveStatus::Arrived )
     {
         mSearchPoints.clear();
+        cerr << "mSearchPoints cleared in executeDriveToTarget" << endl;
         if( mRover->roverStatus().path().front().gate )
         {
             roverStateMachine->mGateStateMachine->mGateSearchPoints.clear();

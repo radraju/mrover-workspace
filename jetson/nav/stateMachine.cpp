@@ -110,6 +110,7 @@ void StateMachine::run()
             nextState = NavState::Off;
             mRover->roverStatus().currentState() = executeOff(); // turn off immediately
             clear( mRover->roverStatus().path() );
+            cerr << "Rover path cleared in stateMachine.cpp" << endl;
             if( nextState != mRover->roverStatus().currentState() )
             {
                 mRover->roverStatus().currentState() = nextState;
